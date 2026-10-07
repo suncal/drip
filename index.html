@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drip — find the money leaking out of your accounts</title>
+<meta name="description" content="Drop in a bank statement and see every recurring charge, price rise and forgotten subscription. Runs entirely in your browser — nothing is uploaded.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3C11 11 7 15.5 7 20a9 9 0 0 0 18 0c0-4.5-4-9-9-17z' fill='%232f6bd8'/></svg>">
+</head>
+<body><div style="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#8a1c1c;color:#fff;font:12px/1.4 system-ui;padding:6px 12px;text-align:center">DEMO — paper/sample data only. Not financial advice. No live trading, no real accounts, no profit claims.</div>
+<div class="wrap">
+
+  <header class="top">
+    <div class="logo">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3C11 11 7 15.5 7 20a9 9 0 0 0 18 0c0-4.5-4-9-9-17z"
+              fill="var(--accent)"/>
+      </svg>
+      <h1>Drip</h1>
+    </div>
+    <p class="tag">
+      Drop in a bank or card statement and see every recurring charge you're
+      paying — including the ones that quietly went up in price, the ones you
+      forgot about, and what's due to bill next.
+    </p>
+    <span class="privacy">
+      <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M8 1l5 2v4c0 3.5-2.2 6.6-5 8-2.8-1.4-5-4.5-5-8V3l5-2z"
+              fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+      Runs entirely in your browser. Nothing is uploaded, stored or sent anywhere.
+    </span>
+  </header>
+
+  <div class="drop" id="drop">
+    <h2>Drop your statement here</h2>
+    <p>CSV, OFX or QFX — from any bank. You can drop several files at once.</p>
+    <div class="row-btns">
+      <button class="btn" id="pick">Choose file</button>
+      <button class="btn ghost" id="demo">Try it with sample data</button>
+    </div>
+    <input type="file" id="file" multiple accept=".csv,.txt,.tsv,.ofx,.qfx"
+           style="display:none">
+
+    <details class="help">
+      <summary>How do I get a statement file from my bank?</summary>
+      <div>
+        <p>Nearly every bank has an export button. Look for <em>Download</em>,
+           <em>Export</em> or <em>Statements</em> in your online banking, then
+           choose CSV (sometimes called “spreadsheet”, “Excel” or “Quicken”).</p>
+        <ul>
+          <li>Pick the longest range you can — <strong>12 to 24 months</strong>
+              is ideal, because yearly subscriptions only show up once.</li>
+          <li>Export your current account <em>and</em> your credit cards, then
+              drop them all in together. Subscriptions hide on the card you
+              look at least.</li>
+          <li>PDF statements won't work. If CSV isn't offered, OFX/QFX
+              (“Quicken format”) will do.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div id="messages"></div>
+  <div id="results"></div>
+
+  <footer>
+    <h3>How it works</h3>
+    <p>
+      Drip groups your transactions by merchant — which means untangling
+      descriptors like <code>SQ&nbsp;*BLUE&nbsp;BOTTLE&nbsp;8452</code> and
+      <code>PAYPAL&nbsp;*SPOTIFY&nbsp;USA</code> into the actual businesses
+      behind them. It then looks at the gaps between charges from each merchant
+      and measures how regular they are, using the median gap and the median
+      deviation from it rather than an average. That matters: a single skipped
+      month or a payment posted two days late throws an average badly off,
+      while leaving this measurement almost unchanged — and real subscriptions
+      skip, retry and post late all the time.
+    </p>
+    <p>
+      Anything regular enough gets a cadence, a predicted next charge date and
+      a confidence score. Prices are then checked for step changes that stick,
+      so a genuine rise is separated from a one-off partial or refunded month.
+    </p>
+    <h3>Your data</h3>
+    <p>
+      Everything happens inside this page. There is no server, no account, no
+      analytics and no network request of any kind — you can disconnect from
+      the internet and it will work exactly the same. Close the tab and nothing
+      remains.
+    </p>
+    <p>
+      Drip is a reading aid, not financial advice, and it can only see what's in
+      the files you give it. Always check a charge against your actual statement
+      before cancelling anything.
+    </p>
+  </footer>
+
+</div>
+
+<script src="parse.js"></script>
+<script src="merchants.js"></script>
+<script src="analyze.js"></script>
+<script src="sample.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
