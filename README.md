@@ -1,5 +1,9 @@
 # Drip
 
+[![Live demo](https://img.shields.io/badge/live-demo-0E6B52)](https://suncal.github.io/drip/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Stars](https://img.shields.io/github/stars/suncal/drip?style=social)](https://github.com/suncal/drip/stargazers)
+
+![screenshot](docs/hero.png)
+
 **Find the money leaking out of your accounts.** Drop in a bank or card
 statement and see every recurring charge you're paying — including the ones
 that quietly went up in price, the ones you forgot about, and what's due to
@@ -133,3 +137,9 @@ app.js          UI and provenance drill-down
 - Drip is a reading aid, not financial advice. It only sees what's in the files
   you give it. Check a charge against your actual statement before cancelling
   anything.
+
+---
+
+**If this is useful to you, a ⭐ on the repo helps other people find it.** Issues and pull requests are welcome.
+
+Built by [Priyankar "Sunny" Chakraborty](https://github.com/suncal) · [everbuiltstudio.com](https://everbuiltstudio.com)
